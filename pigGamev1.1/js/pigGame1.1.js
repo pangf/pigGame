@@ -18,7 +18,7 @@ $('.btn-roll').click(function() {
 		var dice = Math.floor(Math.random() * 6) + 1;
 		//dispaly result
 		$('.dice').css('display', 'block');
-		$('.dice').attr('src', '/images/dice-' + dice + '.png');
+		$('.dice').attr('src', 'images/dice-' + dice + '.png');
 		//update round score if the rolled number is not 1
 		if (dice != 1) {
 			//add score
