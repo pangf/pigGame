@@ -17,4 +17,4 @@ V1.1
 
 v1.2
 3. Add another dice to the game, so that there are two dices now. The player looses his current score when one of them is a 1. 
-![](screenshots/pigGamev1.1.PNG)
+![](screenshots/pigGamev1.2.PNG)
