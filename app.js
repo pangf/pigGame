@@ -32,23 +32,36 @@ $(".btn-roll").click(function(){
         //add score
         roundScores+=dice;
         $("#current-"+activePlayer).html(roundScores);
-        $(".player-1-panel").removeClass("active");
-        $(".player-0-panel").addClass("active");
-
-        
-    
+ 
     }else{
-        //pass to next player(ternary)
-        activePlayer===0? activePlayer =1 : activePlayer =0;
-        console.log(activePlayer);
-        
-        var lastActivePlayer=Math.abs(activePlayer-1);
-        $("#current-"+lastActivePlayer).html(0);
-        roundScores=0;
-        console.log("test1");
-        $(".player-0-panel").removeClass("active");
-        $(".player-1-panel").addClass("active");
 
+        nextPlayer()
 
     }
 });
+
+//hold function 
+$(".btn-hold").click(function(){
+    //add current to global
+    scores[activePlayer]+=roundScores;
+    roundScores=0;
+    //update UI
+    $("#score-"+activePlayer).html(scores[activePlayer]); 
+         //if player win 
+    if (scores[activePlayer]>=10){
+       
+        $("#name-"+activePlayer).html("winner!!");
+    }else{
+    nextPlayer()
+    }
+});
+
+function nextPlayer(){
+    activePlayer===0? activePlayer=1:activePlayer=0;
+    roundScores=0;
+    $("#current-"+activePlayer).html(0);
+    $(".player-0-panel").toggleClass("active");
+    $(".player-1-panel").toggleClass("active");
+    $(".dice").css("display","none");
+
+}
