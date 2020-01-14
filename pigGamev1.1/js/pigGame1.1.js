@@ -1,13 +1,13 @@
 /*
 GAME RULES:
 
-1. A player looses his ENTIRE score when he rolls two 6 in a row. After that, it's the next player's turn. (Hint: Always save the previous dice roll in a separate variable)
+1. A player looses his ENTIRE score when he rolls two 6 in a row. After that, it's the next player's turn. (Hint: Always save the previous dice roll in a separate variable) continuous 2, 6
 2. Add an input field to the HTML where players can set the winning score, so that they can change the predefined score of 100. (Hint: you can read that value with the .value property in JavaScript. This is a good oportunity to use google to figure this out :)
 3. Add another dice to the game, so that there are two dices now. The player looses his current score when one of them is a 1. (Hint: you will need CSS to position the second dice, so take a look at the CSS code for the first one.)
 */
 
 
-var scores, roundScores, activePlayer, gamePlaying;
+var scores, roundScores, activePlayer, gamePlaying, lastDice;
 init();
 /*game switch*/
 $('.dice').css('display', 'none');
@@ -19,8 +19,13 @@ $('.btn-roll').click(function() {
 		//dispaly result
 		$('.dice').css('display', 'block');
 		$('.dice').attr('src', 'images/dice-' + dice + '.png');
-		//update round score if the rolled number is not 1
-		if (dice != 1) {
+		//if player rows 2 6 in one round, player will lose mark and lose game.
+		if (dice===6 && lastDice===6){
+			scores[activePlayer]=0;
+			$("current-"+activePlayer).html(0);
+			nextPlayer();
+	
+		}else if (dice != 1) {
 			//add score
 			roundScores += dice;
 			$('#current-' + activePlayer).html(roundScores);
@@ -28,6 +33,8 @@ $('.btn-roll').click(function() {
 			nextPlayer();
 		}
 	}
+	
+		
 });
 //hold function
 $('.btn-hold').click(function() {
@@ -47,6 +54,8 @@ $('.btn-hold').click(function() {
 		} else {
 			nextPlayer();
 		}
+		lastDice=dice;
+
 	}
 });
 
