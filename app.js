@@ -10,11 +10,7 @@ GAME RULES:
 */
 
 var scores, roundScores,activePlayer;
-scores=[0,0];
-roundScores=0;
-activePlayer=0;
-
-
+init();
 /*player1 current scores*/
 // $("#current-"+activePlayer).html(dice);
 /*hide dice at the beginner of the game*/
@@ -35,7 +31,7 @@ $(".btn-roll").click(function(){
  
     }else{
 
-        nextPlayer()
+        nextPlayer();
 
     }
 });
@@ -47,13 +43,27 @@ $(".btn-hold").click(function(){
     roundScores=0;
     //update UI
     $("#score-"+activePlayer).html(scores[activePlayer]); 
-         //if player win 
+    //if player win 
     if (scores[activePlayer]>=10){
        
         $("#name-"+activePlayer).html("winner!!");
+        $(".dice").css("display","none");
+        $(".player-"+activePlayer+"-panel").addClass("winner");
+        $(".player-"+activePlayer+"-panel").removeClass("active");
     }else{
-    nextPlayer()
+    nextPlayer();
     }
+});
+
+//statrt a new game
+$('.btn-new').click(function(){
+    init();
+    $(".player-0-panel").addClass("active");
+    $(".player-1-panel").removeClass("active");
+    $(".player-"+activePlayer+"-panel").removeClass("winner");
+    $("#name-0").html("player-1");
+    $("#name-1").html("player-2");
+
 });
 
 function nextPlayer(){
@@ -63,5 +73,13 @@ function nextPlayer(){
     $(".player-0-panel").toggleClass("active");
     $(".player-1-panel").toggleClass("active");
     $(".dice").css("display","none");
+
+}
+
+function init(){
+    scores=[0,0];
+    roundScores=0;
+    activePlayer=0;
+
 
 }
