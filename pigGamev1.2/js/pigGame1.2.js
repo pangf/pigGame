@@ -8,27 +8,32 @@ GAME RULES:
 */
 
 
-var scores, roundScores, activePlayer, gamePlaying, lastDice,winPoint,dice;
+var scores, roundScores, activePlayer, gamePlaying, lastDice,winPoint,dice,dice_1;
 init();
 /*game switch*/
 $('.dice').css('display', 'none');
+$('.dice_1').css('display', 'none');
 
 $('.btn-roll').click(function() {
 	if (gamePlaying) {
 		//create an random number
 		dice = Math.floor(Math.random() * 6) + 1;
+		dice_1 = Math.floor(Math.random() * 6) + 1;
 		//dispaly result
 		$('.dice').css('display', 'block');
+		$('.dice_1').css('display', 'block');
 		$('.dice').attr('src', 'images/dice-' + dice + '.png');
+		$('.dice_1').attr('src', 'images/dice-' + dice_1 + '.png');
 		//if player rows 2 6 in one round, player will lose mark and lose game.
-		if (dice===6 && lastDice===6){
-			scores[activePlayer]=0;
-			$("current-"+activePlayer).html(0);
-			nextPlayer();
+		// if (dice===6 && lastDice===6){
+		// 	scores[activePlayer]=0;
+		// 	$("current-"+activePlayer).html(0);
+		// 	nextPlayer();
 	
-		}else if (dice != 1) {
+		// }else 
+		if (dice != 1&& dice_1!=1) {
 			//add score
-			roundScores += dice;
+			roundScores=roundScores+dice+dice_1;
 			$('#current-' + activePlayer).html(roundScores);
 		} else {
 			nextPlayer();
@@ -59,6 +64,7 @@ $('.btn-hold').click(function() {
 		if (scores[activePlayer] >= winPoint) {
 			$('#name-' + activePlayer).html('winner!!');
 			$('.dice').css('display', 'none');
+			$('.dice_1').css('display', 'none');
 			$('.player-' + activePlayer + '-panel').addClass('winner');
 			$('.player-' + activePlayer + '-panel').removeClass('active');
 			gamePlaying = false;
@@ -89,6 +95,7 @@ function nextPlayer() {
 	$('.player-0-panel').toggleClass('active');
 	$('.player-1-panel').toggleClass('active');
 	$('.dice').css('display', 'none');
+	$('.dice_1').css('display', 'none');
 }
 
 function init() {
