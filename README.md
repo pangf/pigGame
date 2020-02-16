@@ -8,7 +8,7 @@ v1.0
 - If the player rolls a 1, all his ROUND score gets lost. After that, it's the next player's turn
 - The player can choose to 'Hold', which means that his ROUND score gets added to his GLBAL score. After that, it's the next player's turn
 - The first player to reach 100 points on GLOBAL score wins the game
-![](screenshots/pigGamev1.0.PNG)
+![](screenshots/pic1.PNG)
 
 
 V1.1
@@ -18,4 +18,4 @@ V1.1
 v1.2
 
 3. Add another dice to the game, so that there are two dices now. The player looses his current score when one of them is a 1. 
-![](screenshots/pigGamev1.2.PNG)
+![](screenshots/pic2.PNG)
